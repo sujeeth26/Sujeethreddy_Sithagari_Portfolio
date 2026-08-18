@@ -1,316 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sujeeth Reddy Sithagari — Highlights</title>
-<style>
-  :root{
-    --ink:#12181B;
-    --paper:#F6F5F1;
-    --panel:#FFFFFF;
-    --line:#E1DED4;
-    --accent:#2F6F5E;   /* deep commerce green */
-    --accent-2:#C77B3B; /* warm copper for data callouts */
-    --muted:#6B6F66;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family: 'Iowan Old Style','Georgia',serif;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-  .mono{
-    font-family: 'JetBrains Mono','SFMono-Regular',Consolas,monospace;
-    letter-spacing:0.02em;
-  }
-  a{color:inherit;}
-  .wrap{max-width:920px; margin:0 auto; padding: 0 32px;}
-
-  /* HERO */
-  header{
-    border-bottom:1px solid var(--line);
-    padding:64px 0 40px;
-    background:
-      linear-gradient(180deg, rgba(47,111,94,0.05), rgba(47,111,94,0));
-  }
-  .eyebrow{
-    font-size:12px; text-transform:uppercase; letter-spacing:0.16em;
-    color:var(--accent); font-weight:600; margin-bottom:18px;
-  }
-  h1{
-    font-size:clamp(34px,5vw,52px);
-    font-weight:400;
-    letter-spacing:-0.01em;
-    margin-bottom:10px;
-  }
-  .role-line{
-    font-size:19px; color:var(--muted); font-style:italic; margin-bottom:26px;
-  }
-  .contact-row{
-    display:flex; flex-wrap:wrap; gap:10px 22px; font-size:14px;
-  }
-  .contact-row a{
-    text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px;
-    transition:border-color .15s ease, color .15s ease;
-  }
-  .contact-row a:hover{border-color:var(--accent); color:var(--accent);}
-
-  /* SUMMARY */
-  .summary{
-    padding:44px 0 8px;
-    font-size:18px;
-    max-width:760px;
-    color:#2A2F2C;
-  }
-
-  /* METRIC STRIP — the signature element */
-  .metrics{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    margin:44px 0 8px;
-  }
-  .metric{
-    padding:26px 20px;
-    border-right:1px solid var(--line);
-  }
-  .metric:last-child{border-right:none;}
-  .metric .num{
-    font-size:30px; font-weight:700; color:var(--accent-2);
-  }
-  .metric .label{
-    font-size:12.5px; color:var(--muted); margin-top:6px; line-height:1.4;
-  }
-
-  /* SECTIONS */
-  section{padding:48px 0;}
-  section + section{border-top:1px solid var(--line);}
-  .section-head{
-    display:flex; align-items:baseline; gap:14px; margin-bottom:26px;
-  }
-  .section-head .idx{
-    font-size:12px; color:var(--accent); font-weight:700;
-  }
-  .section-head h2{
-    font-size:13px; text-transform:uppercase; letter-spacing:0.14em;
-    font-weight:600; color:var(--ink);
-    font-family: 'JetBrains Mono','SFMono-Regular',Consolas,monospace;
-  }
-
-  /* EXPERIENCE */
-  .role{
-    display:grid;
-    grid-template-columns:210px 1fr;
-    gap:28px;
-    padding:22px 0;
-  }
-  .role + .role{border-top:1px dashed var(--line);}
-  .role-meta .company{font-weight:600; font-size:17px;}
-  .role-meta .title{color:var(--accent); font-size:14.5px; margin-top:2px;}
-  .role-meta .dates{
-    font-size:12px; color:var(--muted); margin-top:10px;
-  }
-  .role-body ul{list-style:none;}
-  .role-body li{
-    position:relative; padding-left:18px; margin-bottom:11px;
-    font-size:15.3px; color:#282D29;
-  }
-  .role-body li::before{
-    content:'—'; position:absolute; left:0; color:var(--accent-2);
-  }
-  .role-body li b{color:var(--ink); font-weight:700;}
-
-  /* SKILLS */
-  .skill-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:26px 40px;
-  }
-  .skill-cat{border-left:2px solid var(--accent); padding-left:16px;}
-  .skill-cat h3{
-    font-family:'JetBrains Mono',monospace; font-size:12px;
-    text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:8px;
-  }
-  .skill-cat p{font-size:14.5px; color:#2A2F2C;}
-
-  /* CERTS + EDU */
-  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
-  .card{
-    background:var(--panel); border:1px solid var(--line); border-radius:3px;
-    padding:20px 22px;
-  }
-  .card h3{font-size:15px; margin-bottom:12px; font-weight:600;}
-  .card ul{list-style:none;}
-  .card li{
-    font-size:14px; padding:6px 0; border-top:1px solid var(--line); color:#2A2F2C;
-  }
-  .card li:first-child{border-top:none;}
-
-  footer{
-    padding:40px 0 60px; text-align:center;
-    font-size:12.5px; color:var(--muted);
-  }
-
-  @media (max-width:680px){
-    .metrics{grid-template-columns:repeat(2,1fr);}
-    .metric:nth-child(2){border-right:none;}
-    .role{grid-template-columns:1fr;}
-    .skill-grid, .two-col{grid-template-columns:1fr;}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sujeeth Reddy Sithagari | Data Analyst & Data Engineer</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background: #f9f9f9; color: #333; scroll-behavior: smooth; }
+    header, section, footer { padding: 20px; max-width: 1000px; margin: auto; }
+    header { background: #222; color: #fff; text-align: center; position: relative; padding-top: 80px; }
+    header img { border-radius: 50%; width: 150px; height: 150px; object-fit: cover; margin-top: 15px; }
+    h1 { margin: 0; }
+    .tagline { font-size: 1.1em; margin-top: 10px; color: #ccc; }
+    nav { position: fixed; top: 0; width: 100%; background: #111; padding: 10px 0; z-index: 999; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    section { background: #fff; margin-top: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    h2 { border-bottom: 2px solid #eee; padding-bottom: 5px; }
+    .project img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-top: 10px; transition: transform 0.3s ease; }
+    .project img:hover { transform: scale(1.03); cursor: pointer; }
+    .project { margin-bottom: 20px; }
+    footer { text-align: center; font-size: 0.9em; color: #666; margin-top: 40px; background: #111; color: white; padding: 20px; }
+    footer a { color: #ccc; margin: 0 10px; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    a { color: #0366d6; text-decoration: none; }
+    .socials a { margin: 0 10px; }
+    ul { list-style: none; padding-left: 0; }
+    .skills-columns { display: flex; flex-wrap: wrap; gap: 40px; }
+    .skills-column { flex: 1; min-width: 250px; }
+    .skills-column li { margin-bottom: 8px; }
+    .skills-column li i { margin-right: 8px; color: #0366d6; }
+    .download-btn { display: inline-block; margin-top: 10px; padding: 10px 15px; background: #0366d6; color: white; border-radius: 5px; text-decoration: none; }
+    .download-btn:hover { background: #024a9f; }
+  </style>
 </head>
 <body>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-<header>
-  <div class="wrap">
-    <div class="eyebrow">Highlights — Product Data Science Manager, Shopify</div>
+  <header>
+    <img src="profile.jpg" alt="Sujeeth Reddy Sithagari">
     <h1>Sujeeth Reddy Sithagari</h1>
-    <div class="role-line">Data Scientist &amp; AI Engineer — shipping ML that moves product &amp; business metrics at scale</div>
-    <div class="contact-row mono">
-      <a href="mailto:contactsujeethreddysithagari@gmail.com">contactsujeethreddysithagari@gmail.com</a>
-      <a href="tel:+16673794420">+1 (667) 379-4420</a>
-      <a href="https://linkedin.com/in/sujeeth-sithagari" target="_blank" rel="noopener">linkedin.com/in/sujeeth-sithagari</a>
-      <a href="https://github.com/SujeethReddy" target="_blank" rel="noopener">github.com/SujeethReddy</a>
-      <span style="color:var(--muted)">Open to relocate</span>
+    <div class="tagline">Data Analyst & Data Engineer | Transforming Data into Insights and Scalable Solutions</div>
+    <div class="socials">
+      <a href="https://github.com/sujeeth26">GitHub</a>
+      <a href="https://www.linkedin.com/in/sujeeth-sithagari/">LinkedIn</a>
+      <a href="mailto:sujeethreddysithagari@gmail.com">Email</a>
+      
     </div>
-  </div>
-</header>
+  </header>
 
-<div class="wrap">
-  <p class="summary">Five-plus years turning large-scale data into product and business decisions — spanning product analytics, experimentation, predictive modeling, and end-to-end ML pipelines. I partner directly with product, engineering, and business stakeholders to lead through data, with a track record of shipping productionized ML that serves millions of users and moves core KPIs.</p>
-</div>
+  <section id="about" data-aos="fade-up">
+    <h2>About Me</h2>
+    <p>I’m a data professional passionate about building intuitive dashboards and scalable data pipelines. With experience in Power BI, Excel, Azure Data Factory, and Databricks, I turn raw data into impactful stories and solutions.</p>
+    <p><strong>Master’s in Data Science at University of Maryland, Baltimore County (UMBC).</strong></p>
+  </section>
 
-<div class="wrap">
-  <div class="metrics">
-    <div class="metric">
-      <div class="num mono">1.2M</div>
-      <div class="label">daily queries served by a production RAG assistant, sub-180ms latency</div>
-    </div>
-    <div class="metric">
-      <div class="num mono">65%</div>
-      <div class="label">cut in manual review time via LangGraph automation, 500k+ applications/mo</div>
-    </div>
-    <div class="metric">
-      <div class="num mono">120K</div>
-      <div class="label">monthly users served by a geospatial recommendation engine I built</div>
-    </div>
-    <div class="metric">
-      <div class="num mono">3×</div>
-      <div class="label">YoY program growth from a donor-behavior analytics pipeline I led</div>
-    </div>
-  </div>
-</div>
-
-<div class="wrap">
-  <section>
-    <div class="section-head"><span class="idx mono">01</span><h2>Experience</h2></div>
-
-    <div class="role">
-      <div class="role-meta">
-        <div class="company">Capital One</div>
-        <div class="title">AI Engineer</div>
-        <div class="dates mono">May 2026 — Present<br>McLean, VA (Remote)</div>
-      </div>
-      <div class="role-body">
+  <section id="skills" data-aos="fade-up">
+    <h2>Skills</h2>
+    <div class="skills-columns">
+      <div class="skills-column">
+        <h3>Data Analysis & Visualization</h3>
         <ul>
-          <li>Shipped a retrieval-augmented assistant serving <b>1.2M daily customer queries</b> at sub-180ms latency, improving response relevance <b>40%</b> across retail banking products.</li>
-          <li>Architected multi-step underwriting automation with LangGraph/LangChain on Kubernetes, cutting analyst review time <b>65%</b> across <b>500k+ applications/month</b> at 99.95% uptime.</li>
-          <li>Owned bias-detection and model-monitoring frameworks across <b>15 production models</b>, ensuring 100% OCC/CFPB compliance while cutting manual audit effort <b>70%</b>.</li>
-          <li>Fine-tuned domain LLMs on Bedrock (RLHF + SFT), lifting query resolution accuracy <b>38%</b> and cutting hallucination rate <b>42%</b> across 2.5M monthly interactions.</li>
+          <li><i class="fas fa-chart-bar"></i> Power BI, Tableau</li>
+          <li><i class="fas fa-table"></i> Excel (Power Pivot, Pivot Tables, Power Query)</li>
+          <li><i class="fas fa-broom"></i> Data Cleaning & Wrangling</li>
+          <li><i class="fas fa-tachometer-alt"></i> Dashboard Design</li>
         </ul>
       </div>
-    </div>
-
-    <div class="role">
-      <div class="role-meta">
-        <div class="company">WikiCharities</div>
-        <div class="title">Data Scientist</div>
-        <div class="dates mono">Jan 2025 — May 2026<br>McLean, VA (Remote)</div>
-      </div>
-      <div class="role-body">
+      <div class="skills-column">
+        <h3>Data Engineering</h3>
         <ul>
-          <li>Led a cross-functional team of analysts and engineers for 1.5 years, setting analytical direction and owning delivery of product-analytics initiatives end-to-end.</li>
-          <li>Built a donor-behavior analytics pipeline (SQL, Pandas, Tableau) across <b>200+ foundation partners</b>, driving a <b>31%</b> increase in collaborative funding and <b>3× YoY</b> program growth.</li>
-          <li>Trained a nonprofit credibility-scoring model on 50,000+ profiles, improving onboarding accuracy <b>44%</b> and cutting fraud-detection time <b>58%</b>.</li>
-          <li>Shipped a geospatial recommendation engine (PostGIS + collaborative filtering) reaching <b>120k monthly users</b> and lifting nonprofit-donor matches <b>37%</b>.</li>
-          <li>Applied NLP (BERT, TF-IDF, spaCy NER) to auto-categorize 35,000 project descriptions, improving tagging accuracy <b>52%</b> and cutting editorial review effort <b>68%</b>.</li>
+          <li><i class="fas fa-project-diagram"></i> Azure Data Factory</li>
+          <li><i class="fas fa-database"></i> Azure Databricks</li>
+          <li><i class="fas fa-layer-group"></i> Delta Lake, Data Lakes</li>
+          <li><i class="fas fa-sync-alt"></i> ETL Pipelines (PySpark, ADF)</li>
         </ul>
       </div>
-    </div>
-
-    <div class="role">
-      <div class="role-meta">
-        <div class="company">Cognizant</div>
-        <div class="title">Programmer Analyst — Healthcare Analytics</div>
-        <div class="dates mono">Jan 2020 — Jul 2023<br>Hyderabad, India</div>
-      </div>
-      <div class="role-body">
+      <div class="skills-column">
+        <h3>Programming & Tools</h3>
         <ul>
-          <li>Engineered 5+ Informatica ETL workflows standardizing healthcare data across 3 business units, with 10+ SQL validation checks cutting inconsistencies <b>20%</b>.</li>
-          <li>Hardened pipeline scheduling and CI/CD across 4 release cycles, cutting failure rate <b>25%</b> and root-cause resolution to under 2 hours, at 100% validated deployments.</li>
+          <li><i class="fas fa-code"></i> SQL, Python, R</li>
+          <li><i class="fas fa-laptop-code"></i> Git, Jupyter Notebooks</li>
+          <li><i class="fas fa-database"></i> MS SQL Server, MySQL</li>
+          <li><i class="fab fa-microsoft"></i> Azure, Docker</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="section-head"><span class="idx mono">02</span><h2>Technical Skills</h2></div>
-    <div class="skill-grid">
-      <div class="skill-cat">
-        <h3>Product Analytics</h3>
-        <p>KPI design, metrics research, A/B testing, segmentation, cohort &amp; funnel analysis, data storytelling, stakeholder reporting</p>
-      </div>
-      <div class="skill-cat">
-        <h3>Languages &amp; Frameworks</h3>
-        <p>Python, SQL, Bash, Pandas, NumPy, Polars, FastAPI, asyncio, PyTorch, TensorFlow</p>
-      </div>
-      <div class="skill-cat">
-        <h3>Statistics &amp; ML</h3>
-        <p>Scikit-learn, XGBoost, LightGBM, logistic regression, random forest, collaborative filtering, model evaluation, fairness auditing, RLHF/SFT</p>
-      </div>
-      <div class="skill-cat">
-        <h3>NLP &amp; Generative AI</h3>
-        <p>BERT, TF-IDF, spaCy, NER, text classification, semantic search, RAG, LangChain, LangGraph, Amazon Bedrock, prompt engineering</p>
-      </div>
-      <div class="skill-cat">
-        <h3>Data &amp; Cloud</h3>
-        <p>Informatica PowerCenter, Spark, Airflow, ETL/ELT, dimensional modeling, data governance, AWS SageMaker, MLflow, Azure, Snowflake, DBT</p>
-      </div>
-      <div class="skill-cat">
-        <h3>Visualization &amp; Ops</h3>
-        <p>Tableau, Power BI, Power Query, PostgreSQL, MySQL, PostGIS, OpenSearch, Docker, Kubernetes, Git, CI/CD</p>
-      </div>
+  <section id="experience" data-aos="fade-up">
+    <h2>Experience</h2>
+   <p><strong>CVS Health – Data Engineer (Contract)</strong> (Jun 2024 – Present)<br>
+    Developed and maintained Azure Data Factory and Databricks pipelines to process pharmacy and retail data into Azure Synapse. Migrated legacy ETL workflows to cloud-native solutions, implemented data-quality checks, and collaborated with cross-functional teams to deliver reliable datasets for analytics and compliance reporting.</p>
+    <p><strong>Amazon – Relay Analyst</strong> (Oct 2022 – Jul 2023)<br>
+    • Queried SQL-based systems (QueryExpress) to extract, join, and analyze 50K–100K daily operational records, enabling data-driven decisions for relay operations.<br>
+    • Cleaned, validated, and transformed datasets in Excel using advanced formulas, conditional logic, and PivotTables, reducing manual effort by 40% and improving data accuracy.<br>
+    • Built and maintained interactive QuickSight dashboards to monitor SLA compliance, identify delays, and track route performance, providing real-time operational insights to management.<br>
+    • Automated recurring reports and implemented data quality checks to detect bottlenecks early, improving trailer departure KPIs by 15% and enhancing on-time delivery rates.<br>
+
+</p>
+
+    <p><strong>Cognizant – ETL Developer</strong> (Jan 2020 – Aug 2022)<br>
+   • Designed, developed, and maintained end-to-end ETL pipelines using Informatica PowerCenter to integrate data from multiple sources, improving data availability by 30% for downstream reporting and analytics.<br>
+   • Optimized ETL workflows through parameterization, reusable mappings, and efficient transformation logic, reducing load times by 27% and improving overall system performance.<br>
+   • Created and executed comprehensive ETL testing strategies, including unit, integration, and regression testing, to cut runtime errors by 20% and improve QA handover efficiency by 15%.<br>
+   • Developed PySpark scripts in Azure Databricks for large-scale data processing, data modeling, and performance testing, enabling faster insights and reliable analytical datasets.</p>
+    
+  </section>
+
+  <section id="projects" data-aos="fade-up">
+    <h2>Projects</h2>
+
+    <div class="project">
+      <h3>Emergency Room Dashboard</h3>
+      <p><strong>Tools:</strong> Excel, Power Query, Power Pivot</p>
+      <p>Interactive Excel dashboard showing ER patient trends, wait times, demographics, and admission rates with slicers and KPIs.</p>
+      <a href="#"><img src="er_dashboard.png" alt="Emergency Room Dashboard Screenshot"></a>
+    </div>
+
+    <div class="project">
+      <h3>Uber Trip Analysis Dashboard</h3>
+      <p><strong>Tools:</strong> Power BI, Power Query, DAX</p>
+      <p>Dynamic dashboard analyzing booking patterns, average fares, and trip distances using heatmaps and time-based breakdowns.</p>
+      <a href="#"><img src="uber_dashboard.png" alt="Uber Trip Dashboard Screenshot"></a>
+    </div>
+
+    <div class="project">
+      <h3>Lending Loan Analysis Dashboard</h3>
+      <p><strong>Tools:</strong> Tableau, Excel</p>
+      <p>Tableau dashboard analyzing lending patterns, credit risk, and borrower behavior with segment filters and visual trends.</p>
+      <a href="#"><img src="Lend_loan.PNG" alt="Loan Analysis Dashboard Screenshot"></a>
+    </div>
+
+    <div class="project">
+      <h3>Azure Data Pipeline for API Ingestion & Analysis</h3>
+      <p><strong>Tools:</strong> Azure Data Factory, Data Lake, Databricks, PySpark, Delta Lake</p>
+      <p>Designed an end-to-end Azure data pipeline following the Medallion Architecture. Ingested data from REST APIs into the bronze layer, processed it in Databricks (silver layer), and stored optimized data in Delta Lake (gold layer) for reporting.</p>
+      <a href="#"><img src="azure_resources.png" alt="Azure Project Screenshot"></a>
     </div>
   </section>
 
-  <section>
-    <div class="section-head"><span class="idx mono">03</span><h2>Education &amp; Certifications</h2></div>
-    <div class="two-col">
-      <div class="card">
-        <h3>University of Maryland, Baltimore County</h3>
-        <ul>
-          <li>MS in Data Science — GPA 3.77</li>
-          <li>Aug 2023 – May 2025</li>
-          <li>ML, Deep Learning, NLP, Statistical Learning, DBMS, Big Data Analytics, Data Warehousing, Cloud Computing, Healthcare Informatics</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Certifications</h3>
-        <ul>
-          <li>Microsoft Certified: Azure AI Engineer Associate (AI-102)</li>
-          <li>AWS Certified Machine Learning Engineer – Associate</li>
-          <li>Microsoft Certified: Fabric Analytics Engineer Associate (DP-600)</li>
-        </ul>
-      </div>
-    </div>
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:sujeethreddysithagari@gmail.com">sujeethreddysithagari@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/sujeeth-sithagari/">linkedin.com/in/sujeeth-sithagari</a></p>
   </section>
-</div>
 
-<footer>
-  Prepared for the Product Data Science Manager role at Shopify · contactsujeethreddysithagari@gmail.com
-</footer>
+  <footer>
+    <div>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p>Copyright &copy; 2025 Sujeeth Reddy Sithagari. All Rights Reserved.</p>
+  </footer>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
